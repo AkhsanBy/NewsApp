@@ -3,7 +3,6 @@ import {
 	View,
 	Text,
 	StyleSheet,
-	Image,
 	Dimensions,
 	ScrollView
 } from "react-native";
@@ -17,22 +16,20 @@ import { white_color, dark_purple_color } from "../utility/color";
 
 const Home = ({ navigation }) => {
 	const [articles, setArticles] = useState([]);
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setLoading] = useState(false);
 
 	const getTopHeadlines = () => {
-		setIsLoading(true);
+		setLoading(true);
 		axios
-			.get(
-				`https://newsapi.org/v2/top-headlines?country=us&apiKey=${NEWS_API_KEY}`
-			)
+			.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${NEWS_API_KEY}`)
 			.then((response) => {
 				const result = response.data.articles;
 				setArticles(result);
-				setIsLoading(false);
+				setLoading(false);
 			})
 			.catch((error) => {
 				alert("Server gagal merespon");
-				setIsLoading(false);
+				setLoading(false);
 			});
 	};
 
@@ -54,6 +51,7 @@ const Home = ({ navigation }) => {
 					))
 				) : (
 					<View>
+						<CardPlaceholder />
 						<CardPlaceholder />
 						<CardPlaceholder />
 						<CardPlaceholder />

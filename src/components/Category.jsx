@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native'
-import { useIsFocused } from '@react-navigation/native';
 
 import { dark_purple_color, gray_color } from '../utility/color'
 

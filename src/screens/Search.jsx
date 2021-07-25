@@ -23,10 +23,10 @@ const Search = ({ navigation }) => {
 	const [articles, setArticles] = useState([]);
 	const [keyword, setKeyword] = useState("");
 	const [activeCategory, setActiveCategory] = useState("");
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setLoading] = useState(false);
 
 	const seachByKeyword = (keyword) => {
-		setIsLoading(true);
+		setLoading(true);
 		axios
 			.get(
 				`https://newsapi.org/v2/everything?q=${keyword}&apiKey=${NEWS_API_KEY}`
@@ -34,16 +34,16 @@ const Search = ({ navigation }) => {
 			.then((response) => {
 				const result = response.data.articles;
 				setArticles(result);
-				setIsLoading(false);
+				setLoading(false);
 			})
 			.catch((error) => {
 				alert("Server gagal merespon");
-				setIsLoading(false);
+				setLoading(false);
 			});
 	};
 
 	const searchByCategory = (category) => {
-		setIsLoading(true);
+		setLoading(true);
 		axios
 			.get(
 				`https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${NEWS_API_KEY}`
@@ -51,11 +51,11 @@ const Search = ({ navigation }) => {
 			.then((response) => {
 				const result = response.data.articles;
 				setArticles(result);
-				setIsLoading(false);
+				setLoading(false);
 			})
 			.catch((error) => {
 				alert("Server gagal merespon");
-				setIsLoading(false);
+				setLoading(false);
 			});
 	};
 
